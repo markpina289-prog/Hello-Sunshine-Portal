@@ -158,8 +158,8 @@ export default function Home() {
           {/* Reese endorsement quote */}
           <div className="bg-amber-50 border border-amber-200 rounded-xl p-5 mb-8 text-left">
             <div className="flex gap-3 items-start">
-              <div className="w-14 h-14 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center flex-shrink-0 shadow-md overflow-hidden border-2 border-amber-300">
-                <span className="text-3xl">☀️</span>
+              <div className="w-16 h-16 rounded-full flex-shrink-0 shadow-md overflow-hidden border-2 border-amber-300">
+                <img src="/reese.png" alt="Reese Witherspoon" className="w-full h-full object-cover object-top" />
               </div>
               <div>
                 <div className="flex items-center gap-2 mb-1">
