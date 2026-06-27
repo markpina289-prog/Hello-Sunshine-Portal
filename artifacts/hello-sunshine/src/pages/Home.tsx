@@ -85,9 +85,22 @@ export default function Home() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleNext = () => {
-    if (formStep < 3) setFormStep(formStep + 1);
-    else setSubmitted(true);
+  const handleNext = async () => {
+    if (formStep < 3) {
+      setFormStep(formStep + 1);
+      return;
+    }
+    try {
+      const res = await fetch(`${import.meta.env.BASE_URL}api/applications`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+      if (!res.ok) throw new Error("Failed");
+    } catch {
+    } finally {
+      setSubmitted(true);
+    }
   };
 
   return (
