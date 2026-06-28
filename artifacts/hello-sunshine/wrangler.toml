@@ -7,6 +7,6 @@ compatibility_flags = ["nodejs_compat"]
 enabled = true
 
 [assets]
-directory = "./dist/public"
+directory = "./artifacts/hello-sunshine/dist/public"
 binding = "ASSETS"
 not_found_handling = "single-page-application"
