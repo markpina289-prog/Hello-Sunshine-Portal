@@ -130,4 +130,4 @@ async function handleApiRequest(request: Request, env: Env): Promise<Response> {
 
   return Response.json({ error: "Not Found" }, { status: 404 });
 }
-}
+
