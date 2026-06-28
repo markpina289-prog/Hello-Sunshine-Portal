@@ -57,11 +57,17 @@
     "wouter": "^3.7.0"
   },
   "devDependencies": {
-    "@types/node": "^22.15.0",
-    "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0",
-    "@vitejs/plugin-react": "^4.4.0",
+    "@replit/vite-plugin-cartographer": "^1.0.0",
+    "@replit/vite-plugin-dev-banner": "^1.0.0",
+    "@replit/vite-plugin-runtime-error-modal": "^1.0.0",
+    "@tailwindcss/vite": "^4.2.0",
+    "@vitejs/plugin-react": "^4.5.0",
+    "drizzle-orm": "^0.44.0",
+    "drizzle-zod": "^0.8.0",
+    "postgres": "^3.4.0",
+    "prettier": "^3.8.4",
     "typescript": "~5.9.3",
-    "vite": "^6.3.0"
+    "wrangler": "^4.105.0",
+    "zod": "^3.25.0"
   }
-}
+  
