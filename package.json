@@ -4,9 +4,9 @@
   "license": "MIT",
   "packageManager": "pnpm@10.11.1",
   "scripts": {
-    "build": "pnpm run typecheck && pnpm --filter artifacts/hello-sunshine run build",
+    "build": "pnpm run typecheck && pnpm --filter hello-sunshine run build",
     "typecheck:libs": "tsc --build",
-    "typecheck": "pnpm run typecheck:libs && pnpm --filter artifacts/hello-sunshine run typecheck"
+    "typecheck": "pnpm run typecheck:libs && pnpm --filter hello-sunshine run typecheck"
   },
   "private": true,
   "devDependencies": {
@@ -18,7 +18,7 @@
     "@radix-ui/react-collapsible": "^1.1.0",
     "@radix-ui/react-context-menu": "^2.2.0",
     "@radix-ui/react-dialog": "^1.1.0",
-    "@radix-ui/react-dropdown-menu": "^2.1.0",
+    "@radix-ui/react-dropdown-menu": "2.1.0",
     "@radix-ui/react-hover-card": "^1.1.0",
     "@radix-ui/react-label": "^2.1.0",
     "@radix-ui/react-menubar": "^1.1.0",
