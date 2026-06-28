@@ -9,5 +9,5 @@ enabled = true
 [site]
 bucket = "artifacts/hello-sunshine/dist/public"
 
-[build]
-command = "pnpm run build"
+# [build]
+# command = "pnpm run build"

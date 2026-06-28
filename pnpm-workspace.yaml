@@ -25,7 +25,7 @@
 #     - typescript
 #
 # ============================================================================
-minimumReleaseAge: 1440
+minimumReleaseAge: 0
 
 minimumReleaseAgeExclude:
   # Exclude @replit scoped packages from the minimum release age check.
@@ -39,6 +39,12 @@ packages:
   - lib/*
   - lib/integrations/*
   - scripts
+
+onlyBuiltDependencies:
+  - "@swc/core"
+  - esbuild
+  - msw
+  - unrs-resolver
 
 catalog:
   '@replit/vite-plugin-cartographer': ^0.5.21
@@ -67,3 +73,6 @@ catalog:
   zod: ^3.25.76
 
 autoInstallPeers: false
+
+allowBuilds:
+  esbuild: set this to true or false
