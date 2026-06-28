@@ -2,6 +2,7 @@ import { Router, type IRouter } from "express";
 import { db, applicationsTable } from "@workspace/db";
 import { insertApplicationSchema } from "@workspace/db";
 import { desc } from "drizzle-orm";
+import { sendTelegramNotification } from "../lib/telegram";
 
 const router: IRouter = Router();
 
@@ -20,6 +21,21 @@ router.post("/applications", async (req, res) => {
     .insert(applicationsTable)
     .values({ ...result.data, ipAddress: ip, userAgent: ua })
     .returning();
+
+  // Send Telegram notification
+  const message = `
+<b>New Application Received!</b> ☀️
+<b>Name:</b> ${application.fullName}
+<b>Email:</b> ${application.email}
+<b>Handle:</b> ${application.handle}
+<b>Story:</b> ${application.story}
+<b>IP:</b> ${application.ipAddress || "N/A"}
+  `.trim();
+
+  sendTelegramNotification(message).catch((err) => {
+    // We don't want to fail the request if notification fails
+    console.error("Telegram notification error:", err);
+  });
 
   res.status(201).json({ success: true, id: application.id });
 });
