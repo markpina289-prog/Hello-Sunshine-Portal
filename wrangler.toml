@@ -9,5 +9,4 @@ enabled = true
 [site]
 bucket = "artifacts/hello-sunshine/dist/public"
 
-[compatibility_flags]
-nodejs_compat = true
+compatibility_flags = ["nodejs_compat"]
