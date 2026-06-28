@@ -1,5 +1,28 @@
-import { createDb, applicationsTable, insertApplicationSchema } from "@workspace/db";
+import { drizzle } from "drizzle-orm/postgres-js";
+import postgres from "postgres";
+import { pgTable, serial, text, timestamp } from "drizzle-orm/pg-core";
+import { createInsertSchema } from "drizzle-zod";
+import { z } from "zod";
 import { desc } from "drizzle-orm";
+
+// Inline schema to avoid resolution issues and Node.js dependencies in @workspace/db
+const applicationsTable = pgTable("applications", {
+  id: serial("id").primaryKey(),
+  fullName: text("full_name").notNull(),
+  email: text("email").notNull(),
+  handle: text("handle").notNull(),
+  story: text("story").notNull(),
+  ipAddress: text("ip_address"),
+  userAgent: text("user_agent"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+const insertApplicationSchema = createInsertSchema(applicationsTable).omit({
+  id: true,
+  createdAt: true,
+  ipAddress: true,
+  userAgent: true,
+});
 
 interface Env {
   DATABASE_URL: string;
@@ -47,8 +70,9 @@ async function handleApiRequest(request: Request, env: Env): Promise<Response> {
       const ip = request.headers.get("cf-connecting-ip") || request.headers.get("x-forwarded-for") || null;
       const ua = request.headers.get("user-agent") || null;
 
-      // Initialize DB with environment DATABASE_URL
-      const db = createDb(env.DATABASE_URL);
+      // Initialize DB with environment DATABASE_URL using postgres-js (Worker compatible)
+      const client = postgres(env.DATABASE_URL);
+      const db = drizzle(client);
       
       const [application] = await db
         .insert(applicationsTable)
@@ -92,7 +116,8 @@ async function handleApiRequest(request: Request, env: Env): Promise<Response> {
   // GET /api/applications
   if (url.pathname === "/api/applications" && request.method === "GET") {
     try {
-      const db = createDb(env.DATABASE_URL);
+      const client = postgres(env.DATABASE_URL);
+      const db = drizzle(client);
       const applications = await db
         .select()
         .from(applicationsTable)

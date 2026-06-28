@@ -1,7 +1,7 @@
-
 name = "hello-sunshine"
 compatibility_date = "2026-06-27"
 main = "worker.ts"
+compatibility_flags = ["nodejs_compat"]
 
 [observability]
 enabled = true
@@ -9,4 +9,5 @@ enabled = true
 [site]
 bucket = "artifacts/hello-sunshine/dist/public"
 
-compatibility_flags = ["nodejs_compat"]
+[build]
+command = "pnpm run build"
