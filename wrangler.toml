@@ -1,12 +1,13 @@
 name = "hello-sunshine"
 compatibility_date = "2026-06-28"
-main = "worker.ts"
+main = "../worker.ts"
 compatibility_flags = ["nodejs_compat"]
 
 [observability]
 enabled = true
 
 [assets]
-directory = "./artifacts/hello-sunshine/dist/public"
+directory = "./dist/public"
 binding = "ASSETS"
 not_found_handling = "single-page-application"
+
