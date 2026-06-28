@@ -4,13 +4,13 @@ import * as schema from "./schema";
 
 const { Pool } = pg;
 
-if (!process.env.DATABASE_URL) {
-  throw new Error(
-    "DATABASE_URL must be set. Did you forget to provision a database?",
-  );
+// Helper to create a DB instance for Node environments
+export function createDb(url: string) {
+  const pool = new Pool({ connectionString: url });
+  return drizzle(pool, { schema });
 }
 
-export const pool = new Pool({ connectionString: process.env.DATABASE_URL });
-export const db = drizzle(pool, { schema });
+// Default export for backward compatibility in Node environments
+export const db = process.env.DATABASE_URL ? createDb(process.env.DATABASE_URL) : null as any;
 
 export * from "./schema";

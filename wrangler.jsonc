@@ -2,6 +2,7 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "hello-sunshine",
   "compatibility_date": "2026-06-27",
+  "main": "worker.ts",
   "observability": {
     "enabled": true
   },
