@@ -6,7 +6,7 @@
     "enabled": true
   },
   "assets": {
-    "directory": "artifacts/hello-sunshine",
+    "directory": "artifacts/hello-sunshine/dist/public",
     "not_found_handling": "single-page-application"
   },
   "compatibility_flags": [
